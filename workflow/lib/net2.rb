@@ -1,5 +1,5 @@
 def authoriseNet2!()
-    uri = URI.parse("http://localhost:8080/api/v1/authorization/tokens")
+    uri = URI.parse("https://watermoorpoint.tunnelto.dev/api/v1/authorization/tokens")
     request = Net::HTTP::Post.new(uri)
     request.set_form_data(
     "username" => ENV["NET2_USERNAME"],
@@ -20,7 +20,7 @@ def authoriseNet2!()
 end
 
 def addNet2User!(access_token,firstname,middlename,lastname,activatedate,expirydate)
-    uri = URI.parse("http://localhost:8080/api/v1/users")
+    uri = URI.parse("https://watermoorpoint.tunnelto.dev/api/v1/users")
     request = Net::HTTP::Post.new(uri)
     request.content_type = "application/json"
     request["Authorization"] = "Bearer #{access_token}"
@@ -44,7 +44,7 @@ def addNet2User!(access_token,firstname,middlename,lastname,activatedate,expiryd
 end
 
 def updateNet2User!(access_token,id,firstname,middlename,lastname,activatedate,expirydate)
-    uri = URI.parse("http://localhost:8080/api/v1/users/#{id}")
+    uri = URI.parse("https://watermoorpoint.tunnelto.dev/api/v1/users/#{id}")
     request = Net::HTTP::Put.new(uri)
     request.content_type = "application/json"
     request["Authorization"] = "Bearer #{access_token}"
@@ -69,7 +69,7 @@ def updateNet2User!(access_token,id,firstname,middlename,lastname,activatedate,e
 end
 
 def associateNet2Dept!(access_token,id,dept)
-    uri = URI.parse("http://localhost:8080/api/v1/users/#{id}/departments")
+    uri = URI.parse("https://watermoorpoint.tunnelto.dev/api/v1/users/#{id}/departments")
     request = Net::HTTP::Put.new(uri)
     request.content_type = "application/json"
     request["Authorization"] = "Bearer #{access_token}"
@@ -89,7 +89,7 @@ end
 
 def findNet2User!(access_token,firstname,middlename,lastname)
     #Get All Users
-    uri = URI.parse("http://localhost:8080/api/v1/users")
+    uri = URI.parse("https://watermoorpoint.tunnelto.dev/api/v1/users")
     request = Net::HTTP::Get.new(uri)
     request.content_type = "application/json"
     request["Accept"] = "application/json"

@@ -2,9 +2,6 @@ GEM
   remote: https://rubygems.org/
   specs:
     dotenv (2.7.6)
-    ffi (1.15.5-x64-mingw-ucrt)
-    ffi-win32-extensions (1.0.4)
-      ffi
     logger (1.5.1)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
@@ -29,11 +26,9 @@ GEM
       rack-protection (= 2.2.0)
       tilt (~> 2.0)
     tilt (2.0.10)
-    win32-service (2.3.2)
-      ffi
-      ffi-win32-extensions
 
 PLATFORMS
+  aarch64-linux
   x64-mingw-ucrt
 
 DEPENDENCIES
@@ -43,7 +38,6 @@ DEPENDENCIES
   pallets
   puma
   sinatra
-  win32-service
 
 BUNDLED WITH
    2.3.7

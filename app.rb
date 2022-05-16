@@ -23,7 +23,13 @@ configure do
 end
 
 helpers do
-  
+    def json_status(code, reason)
+        status code
+        {
+          :status => code,
+          :message => reason
+        }.to_json
+      end
 end
 
 def verify_signature(payload_body)
@@ -44,35 +50,43 @@ post "/nexudus/webhook/:event" do
 
     ENV["booking"] = payload_body
 
-    unless payload_body.empty?
-        status 200
-        system "bundle exec pallets -r ./workflow/watermoorbooking"
-    else
-        status 400
-    end
- 
+    begin
+        unless payload_body.empty?
+           #Trigger workflow
+           Process.fork do
+            system "bundle exec pallets -r ./workflow/watermoorbooking"
+              Process.exit
+           end 
+           json_status 200, "OK" 
+        else 
+           json_status 400, "Bad Data"
+        end 
+     rescue 
+        json_status 400, "Bad Request"
+     end 
 end
 
 get "*" do
     status 404
-end
-
-put "*" do
+ end
+ 
+ put "*" do
     status 404
-end
-
-post "*" do
+ end
+ 
+  post "*" do
     status 404
-end
-
-delete "*" do
+ end
+ 
+  delete "*" do
     status 404
-end
-
-not_found do
-    status 404
-end
-
-error do
-    status 500
-end
+ end
+ 
+ not_found do
+    json_status 404, "Not found"
+ end
+ 
+ error do
+    json_status 500, env['sinatra.error'].message
+ end
+ 
