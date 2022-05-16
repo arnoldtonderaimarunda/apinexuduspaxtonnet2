@@ -1,0 +1,49 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    dotenv (2.7.6)
+    ffi (1.15.5-x64-mingw-ucrt)
+    ffi-win32-extensions (1.0.4)
+      ffi
+    logger (1.5.1)
+    mail (2.7.1)
+      mini_mime (>= 0.1.1)
+    mini_mime (1.1.2)
+    msgpack (1.5.1)
+    mustermann (1.1.1)
+      ruby2_keywords (~> 0.0.1)
+    nio4r (2.5.8)
+    pallets (0.11.0)
+      msgpack
+      redis (~> 4.2)
+    puma (5.6.4)
+      nio4r (~> 2.0)
+    rack (2.2.3)
+    rack-protection (2.2.0)
+      rack
+    redis (4.6.0)
+    ruby2_keywords (0.0.5)
+    sinatra (2.2.0)
+      mustermann (~> 1.0)
+      rack (~> 2.2)
+      rack-protection (= 2.2.0)
+      tilt (~> 2.0)
+    tilt (2.0.10)
+    win32-service (2.3.2)
+      ffi
+      ffi-win32-extensions
+
+PLATFORMS
+  x64-mingw-ucrt
+
+DEPENDENCIES
+  dotenv
+  logger
+  mail
+  pallets
+  puma
+  sinatra
+  win32-service
+
+BUNDLED WITH
+   2.3.7
